@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Rest-Api is provided in separate repository.
 
 ## Purpose
-Build as an exam project for SoftUni's Angular coure february 2024
+Build as an exam project for SoftUni's Angular course february 2024
