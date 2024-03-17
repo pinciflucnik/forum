@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <form #form="ngForm" (ngSubmit)="addTheme(form)">
+        <label for="themeName">Theme name:</label>
+        <input type="text" name="themeName" ngModel #themeName="ngModel" required [ngClass]=" themeName.touched? themeName.errors ? 'border-red': '' : ''">
+        <div *ngIf="themeName.touched">
+            <p class="error" *ngIf="themeName.errors?.['required']">Theme name can't be empty</p>
+        </div>
+        <label for="postText">Theme content</label>
+        <textarea name="postText" ngModel #postText="ngModel" id="" cols="60" rows="10" required [ngClass]=" postText.touched? postText.errors ? 'border-red': '' : ''"></textarea>
+        <div *ngIf="postText.touched">
+            <p class="error" *ngIf="postText.errors?.['required']">Post should not be empty</p>
+        </div>
+        <button [disabled]="form.invalid">Post new theme</button>
+    </form>
+</div>

@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="post" *ngFor="let theme of themes">
+        <h3><a [routerLink]="['/themes',theme._id]">{{theme.themeName}}</a></h3>
+        <p>{{theme.updatedAt| elapsedTime}} | {{theme.created_at | elapsedTime}}</p>
+        <p class="comment">{{theme.posts.length}}</p>
+        <p>{{theme.created_at | elapsedTime}}</p>
+    </div>
+</div>

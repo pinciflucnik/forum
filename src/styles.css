@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font: 14px/1.5 "Varela Round", sans-serif;
+}
+body, ul, li ,a, button, input, textarea {
+    font: inherit;
+}
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+li {
+    list-style: none;
+    cursor: pointer;
+
+}
+textarea {
+    border: 1px solid gray;
+    border-radius: 0.3em;
+    
+}
+form input {
+    border: 1px solid rgba(0,0,0,0.3);
+    max-width: 15em;
+    border-radius: 0.3em;
+    padding: 0.5em 1em;
+}
+button {
+    border: none;
+    border-radius: 0.3em;
+    padding: 0.3em 0.7em;
+    background: #c73333;
+    color: #eee;
+    cursor: pointer;
+}
+button:hover {
+    background: #b88282;
+    color: #c73333;
+}
+.wrapper {
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+}
+.error {
+    color: rgb(216, 22, 22);
+}
+
+.wrapper form{
+    display: flex;
+    flex-direction: column;
+    gap:0.5em;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+
+}
+.wrapper .container p:nth-child(2){
+    font-size: 10em;
+}
+.border-red {
+    border: 4px solid #c73333;
+    border-radius: 0.5em;
+}
+
+@media (min-width: 1300px){
+    html {
+        font: 20px/1.2 "Varela Round", sans-serif;
+    }
+}

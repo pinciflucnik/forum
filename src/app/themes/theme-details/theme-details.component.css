@@ -1,0 +1,7 @@
+.wrapper{
+    flex-direction: column;
+}
+.buttons {
+    display: flex;
+    gap: 1em;
+}

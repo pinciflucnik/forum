@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <form #form="ngForm" (ngSubmit)="onLogin(form)">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" ngModel #email="ngModel" email required minlength="6" autocomplete="username">
+        <div class="error" *ngIf="email.touched">
+            <div *ngIf="email.errors?.['required']">
+                <p>Email is required!</p>
+            </div>
+            <div *ngIf="email.errors?.['minlength']"> 
+                <p>Email must be at least 6 symbols</p>
+            </div>
+            <div *ngIf="email.errors?.['email']"> <!--- MAKE CUSTOM VALIDATION -->
+                <p>Email is not valid</p>
+            </div>
+        </div>
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="pass" ngModel #pass="ngModel" required minlength="5" autocomplete="current-password">
+        <div class="error" *ngIf="pass.touched">
+            <p *ngIf="pass.errors?.['required']">Password is required</p>
+            <p *ngIf="pass.errors?.['minlength']">Password must be at least 5 symbols</p>
+        </div>
+        <button [disabled]="form.invalid">Login</button>
+    </form>
+</div>

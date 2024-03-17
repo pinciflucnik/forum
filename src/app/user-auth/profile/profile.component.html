@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <div class="info" *ngIf="!editBoolean">
+        <h3>Username: {{userUsername}}</h3>
+        <p>Email: {{userEmail}}</p>
+        <p><a routerLink="/user-posts">User's posts count: {{profile?.posts?.length}}</a></p>
+        <P><a routerLink="/user-themes">User's themes count: {{themes.length}}</a></P>
+        <button (click)="editToggle()">Edit profile</button>
+    </div>
+    <div class="info" *ngIf="editBoolean">
+        <form [formGroup]="editForm" (ngSubmit)="onSave()">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" formControlName="username" id="username" name="username" [value]="profile?.username" required minlength="5" autocomplete="username">
+            <!-- <div class="error" *ngIf="user.touched">
+                <div *ngIf="editForm.value.username.errors?.['required']">
+                    <p>Username is required!</p>
+                </div>
+                <div *ngIf="editForm.value.username.errors?.['minLength']">
+                    <p>Username must be at least 5 symbols</p>
+                </div>
+            </div> -->
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" name="email" [value]="profile?.email" email required minlength="6" autocomplete="email">
+            <!-- <div class="error" *ngIf="email.touched"> -->
+                <!-- <div *ngIf="email.errors?.['required']">
+                    <p>Email is required!</p>
+                </div>
+                <div *ngIf="email.errors?.['minlength']"> <!- MAKE CUSTOM VALIDATION -->
+                    <!-- <p>Email must be at least 6 symbols</p>
+                </div>
+                <div *ngIf="email.errors?.['email']">
+                    <p>Email is not valid</p>
+                </div> --> -->
+            <!-- </div> -->
+            <div class="buttons">
+                <button (click)="onCancel($event)">Cancel</button>
+                <button>Save</button> <!--[disabled]="form.invalid"-->
+            </div>
+            
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+header {
+    padding: 2em;
+    background: rgb(97, 96, 96);}
+.site-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+ul li {
+    display: inline;
+    margin-left: 1em;
+}
+ul li a {
+    padding: 0.5em 1em;
+    background: rgb(147,139,0);
+    color: rgb(255,255,255);
+    border-radius: 0.3em;
+}
+ul li a:hover{
+    background: rgb(185, 176, 0);
+    color: rgb(129, 129, 129);
+}
+.logo {
+    max-width: 4.5em;
+    overflow: hidden;
+    border-radius: 0.4em;
+}

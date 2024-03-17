@@ -1,0 +1,16 @@
+<app-loader *ngIf="isLoading" />
+<div *ngIf="!isLoading">
+    <div class="error" *ngIf="error">
+        <p>{{error}}</p>
+    </div>
+    <div class="wrapper" *ngIf="!error">
+        <div class="card" *ngFor="let theme of allThemes">
+            <a [routerLink]="theme._id">
+                <h3>{{theme.themeName}}</h3>
+                <p>Created by: {{theme.userId.username}}</p>
+                <p class="date">{{theme.created_at | dateFormatter}}</p>
+                <p>Subscribers: {{theme.subscribers.length}}</p>
+            </a>
+        </div>
+    </div>
+</div>
