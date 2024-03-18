@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Theme } from 'src/app/theme-type';
 import { ApiService } from 'src/app/themes/api.service';
 import { AuthService } from '../auth.service';
@@ -44,7 +45,9 @@ export class ProfileComponent {
     
     return this.auth.editProfile(username, email).subscribe({
       next: () => {
-        this.editBoolean = !this.editBoolean
+        this.editBoolean = !this.editBoolean;
+        this.auth.getProfile();
+        this.profile!.username = username
       },
       error: err => {
         alert(err.message)

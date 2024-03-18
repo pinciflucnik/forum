@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.get<Theme>(`/api/themes/${id}`);
   }
   post(postText: {}, id: string){
-    return this.http.post(`/api/themes/${id}`, { postText });
+    return this.http.post<Theme>(`/api/themes/${id}`, { postText });
   }
   addTheme(themeName:string, postText: string){
     return this.http.post('/api/themes', {themeName, postText});
@@ -31,7 +31,7 @@ export class ApiService {
     return this.http.get<Post[]>(`/api/posts${limit ? `?limit=${limit}`: ''}`);
   }
   subscribe(id: string){
-    return this.http.put(`/api/themes/${id}`,{});
+    return this.http.put<Theme>(`/api/themes/${id}`,{});
   }
   like(id: string){
     return this.http.put(`/api/likes/${id}`,{});

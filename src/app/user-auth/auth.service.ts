@@ -32,11 +32,11 @@ export class AuthService implements OnDestroy{
   getProfile() {
     return this.http.get<User>('/api/users/profile').pipe(tap(user => this.user$$.next(user)))
   }
+  editProfile(username: string, email: string){
+    return this.http.put('/api/users/profile', {username, email});
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
-  }
-  editProfile(username: string, email: string){
-    return this.http.put('/api/users/profile', {username, email});
   }
 }

@@ -22,7 +22,6 @@ export class ThemeDetailsComponent implements OnInit {
   themeId: string = '';
  constructor(private api:ApiService, private auth: AuthService, private router: Router){
   this.id = this.route.snapshot.params['themeId'];
-
   
  }
  get user(): User | undefined {
@@ -50,6 +49,8 @@ export class ThemeDetailsComponent implements OnInit {
     
     return this.api.post(postText, this.id).subscribe({
       next: data => {
+        console.log(data);
+        this.theme = data;
         this.router.navigate([`/themes`])
       },
       error: err => {
@@ -65,7 +66,8 @@ export class ThemeDetailsComponent implements OnInit {
   }
   onDelete(themeId: string | undefined, postId: string){
     return this.api.deletePost(themeId, postId).subscribe({
-      next: () => {
+      next: (data) => {
+        
         this.router.navigate([`/themes`])
       },
       error: err => {
@@ -89,11 +91,13 @@ export class ThemeDetailsComponent implements OnInit {
     })
   }
   onSubscribe(id: string){
-    console.log('subscribe');
+    console.log('subscribers: ', this.subscriptions);
     
     return this.api.subscribe(id).subscribe({
-      next: () => {
-        this.router.navigate(['themes'])
+      next: (theme) => {        
+        this.subscriptions = theme.subscribers;
+        console.log('newSubscribers: ', this.subscriptions);
+        
       },
       error: err => alert(err.message)
       
@@ -102,7 +106,8 @@ export class ThemeDetailsComponent implements OnInit {
   onLike(id: string){
     return this.api.like(id).subscribe({
       next: () => {
-        this.router.navigate([`/themes`])
+        this.post?.likes
+        // this.router.navigate([`/themes`])
       },
       error: err => {
         alert(err.message)

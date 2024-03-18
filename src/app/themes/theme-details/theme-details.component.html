@@ -1,7 +1,7 @@
 <div class="wrapper">
     <h3>{{theme?.themeName}}</h3>
     <p>Subscribers: {{subscriptions.length}}</p>
-
+    
     <div *ngIf="!!user && !!theme">
         <div class="theme-btns" *ngIf="theme!.userId != user._id">
             <div *ngIf="!subscriptions.includes(user!._id)">
@@ -9,21 +9,23 @@
             </div>
         </div>
     </div>
-
+    
     <div class="theme-text" *ngFor="let post of theme?.posts">
         <h5>{{post.userId.username}}</h5>
         <p>{{post.text}}</p>
         <p>Post likes: {{post.likes.length}}</p>
         <p class="date">posted {{post.created_at | elapsedTime}}</p>
-        <div class="theme-btns" *ngIf="post.userId._id === user?._id">
-            <div *ngIf="!editToggle">
-                <button class="edit-btn" (click)="onEdit(post)">Edit</button>
-                <button class="delete-btn" (click)="onDelete(theme?._id, post._id)">Delete</button>
+        <div *ngIf="user">
+            <div class="theme-btns" *ngIf="post.userId._id === user?._id">
+                <div *ngIf="!editToggle">
+                    <button class="edit-btn" (click)="onEdit(post)">Edit</button>
+                    <button class="delete-btn" (click)="onDelete(theme?._id, post._id)">Delete</button>
+                </div>
             </div>
-        </div>
-        <div class="theme-btns" *ngIf="post.userId._id !== user?._id">
-            <div *ngIf="!post.likes.includes(user!._id)">
-                <button (click)="onLike(post._id)">Like this post</button>
+            <div class="theme-btns" *ngIf="post.userId._id !== user?._id">
+                <div *ngIf="!post.likes.includes(user!._id)">
+                    <button (click)="onLike(post._id)">Like this post</button>
+                </div>
             </div>
         </div>
     </div>
