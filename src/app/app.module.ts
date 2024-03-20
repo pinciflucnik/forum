@@ -11,12 +11,14 @@ import { MyCommonModule } from './common/common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StateHolderComponent } from './state-holder/state-holder.component';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     StateHolderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

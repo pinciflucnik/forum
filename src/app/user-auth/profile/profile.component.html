@@ -1,4 +1,5 @@
-<div class="wrapper">
+<app-loader *ngIf="isLoading" />
+<div class="wrapper" *ngIf="!isLoading">
     <div class="info" *ngIf="!editBoolean">
         <h3>Username: {{userUsername}}</h3>
         <p>Email: {{userEmail}}</p>
@@ -9,31 +10,30 @@
     <div class="info" *ngIf="editBoolean">
         <form [formGroup]="editForm" (ngSubmit)="onSave()">
             <label for="username">Username</label>
-            <input type="text" class="form-control" formControlName="username" id="username" name="username" [value]="profile?.username" required minlength="5" autocomplete="username">
-            <!-- <div class="error" *ngIf="user.touched">
-                <div *ngIf="editForm.value.username.errors?.['required']">
-                    <p>Username is required!</p>
-                </div>
-                <div *ngIf="editForm.value.username.errors?.['minLength']">
-                    <p>Username must be at least 5 symbols</p>
-                </div>
-            </div> -->
+            <input type="text" formControlName="username" id="username" name="username" required minlength="5" autocomplete="username">
+            
+            
+            <div class="error" *ngIf="formUsername?.errors?.['required']">
+                <p>Username is required!</p>
+            </div>
+            <div class="error" *ngIf="formUsername?.errors?.['minlength']">
+                <p>Username must be at least 5 symbols</p>
+            </div>
+            
             <label for="email">Email</label>
-            <input type="email" id="email" formControlName="email" name="email" [value]="profile?.email" email required minlength="6" autocomplete="email">
-            <!-- <div class="error" *ngIf="email.touched"> -->
-                <!-- <div *ngIf="email.errors?.['required']">
+            <input type="email" id="email" formControlName="email" name="email" email required minlength="6" autocomplete="email">
+                <div class="error" *ngIf="formEmail?.errors?.['required']">
                     <p>Email is required!</p>
                 </div>
-                <div *ngIf="email.errors?.['minlength']"> <!- MAKE CUSTOM VALIDATION -->
-                    <!-- <p>Email must be at least 6 symbols</p>
+                <div class="error" *ngIf="formEmail?.errors?.['minlength']">
+                    <p>Email must be at least 6 symbols</p>
                 </div>
-                <div *ngIf="email.errors?.['email']">
+                <div class="error" *ngIf="formEmail?.errors?.['email']">
                     <p>Email is not valid</p>
-                </div> --> -->
-            <!-- </div> -->
+                </div> 
             <div class="buttons">
                 <button (click)="onCancel($event)">Cancel</button>
-                <button>Save</button> <!--[disabled]="form.invalid"-->
+                <button [disabled]="editForm.invalid">Save</button>
             </div>
             
         </form>

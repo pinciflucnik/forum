@@ -1,4 +1,5 @@
-<div class="wrapper">
+<app-loader *ngIf="isLoading" />
+<div class="wrapper" *ngIf="!isLoading">
     <div class="post" *ngFor="let post of userPosts">
         <h3><a [routerLink]="['/themes',post.themeId._id]">{{post.themeId.themeName}}</a></h3>
         <p>{{post.themeId.updatedAt | elapsedTime}} | {{post.themeId.created_at | elapsedTime}}</p>

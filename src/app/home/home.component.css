@@ -1,0 +1,32 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+li {
+    list-style: inside disc;
+}
+li:hover {
+    color: rgb(150, 150, 150);
+    text-shadow: 0.1em 0.1em black;
+}
+h4 {
+    margin-bottom: 1em;
+}
+.wrapper {
+    gap: 2em;
+    align-items: center;
+    background: gray;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.title, .dynamic-list {
+    padding: 2em;
+    box-shadow: 0 0 0.5em 0.3em black;
+    border-radius: 1em;
+    background: rgb(147,139,0);
+    color: white;
+}

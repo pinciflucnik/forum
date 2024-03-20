@@ -11,10 +11,12 @@ import { ApiService } from '../api.service';
 export class UserThemesComponent {
   id: string = '';
   themes: Theme[] = [];
+  isLoading: boolean = true;
   constructor (private auth: AuthService, private api: ApiService){
     this.id = this.auth.user!._id
     this.api.getThemes().subscribe((data)=> {
-      this.themes = data.filter(t => t.userId._id === this.id)
+      this.themes = data.filter(t => t.userId._id === this.id);
+      this.isLoading = false;
     })
   }
 }

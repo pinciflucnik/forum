@@ -1,7 +1,7 @@
 <div class="wrapper">
     <h3>{{theme?.themeName}}</h3>
     <p>Subscribers: {{subscriptions.length}}</p>
-    
+
     <div *ngIf="!!user && !!theme">
         <div class="theme-btns" *ngIf="theme!.userId != user._id">
             <div *ngIf="!subscriptions.includes(user!._id)">
@@ -9,46 +9,26 @@
             </div>
         </div>
     </div>
-    
+
     <div class="theme-text" *ngFor="let post of theme?.posts">
         <h5>{{post.userId.username}}</h5>
         <p>{{post.text}}</p>
         <p>Post likes: {{post.likes.length}}</p>
         <p class="date">posted {{post.created_at | elapsedTime}}</p>
-        <div *ngIf="user">
-            <div class="theme-btns" *ngIf="post.userId._id === user?._id">
-                <div *ngIf="!editToggle">
-                    <button class="edit-btn" (click)="onEdit(post)">Edit</button>
-                    <button class="delete-btn" (click)="onDelete(theme?._id, post._id)">Delete</button>
-                </div>
+        <div class="theme-btns" *ngIf="post.userId._id === user?._id">
+            <div *ngIf="!editToggle">
+                <button class="edit-btn" (click)="onEdit(post)">Edit</button>
+                <button class="delete-btn" (click)="onDelete(theme?._id, post._id)">Delete</button>
             </div>
-            <div class="theme-btns" *ngIf="post.userId._id !== user?._id">
-                <div *ngIf="!post.likes.includes(user!._id)">
-                    <button (click)="onLike(post._id)">Like this post</button>
-                </div>
+        </div>
+        <div class="theme-btns" *ngIf="post.userId._id !== user?._id">
+            <div *ngIf="!post.likes.includes(user!._id)">
+                <button (click)="onLike(post._id)">Like this post</button>
             </div>
         </div>
     </div>
     <div class="new-post" *ngIf="user">
-        <form #form="ngForm" (ngSubmit)="postComment(form)" *ngIf="!editToggle">
-            <label for="postText">Comment:</label>
-            <textarea name="postText" ngModel #postText="ngModel" id="postText" cols="60" rows="10" required [ngClass]=" form.touched? form.invalid ? 'border-red': '' : ''"></textarea>
-            <div *ngIf="postText.touched">
-                <p *ngIf="postText.errors?.['required']" class="error">Post must not be empty</p>
-            </div>
-            <button [disabled]="form.invalid">Post comment</button>
-        </form>
-        <form #form="ngForm" (ngSubmit)="editComment(form, post!)" *ngIf="editToggle">
-            <label for="postText">Comment:</label>
-            <textarea name="postText" ngModel #postText="ngModel" id="postText" cols="60" rows="10" required [ngClass]=" form.touched? form.invalid ? 'border-red': '' : ''"></textarea>
-            
-            <div *ngIf="postText.touched">
-                <p *ngIf="postText.errors?.['required']" class="error">Post must not be empty</p>
-            </div>
-            <div class="buttons">
-                <button (click)="onCancel($event)">Cancel</button>
-                <button [disabled]="form.invalid">Edit comment</button>
-            </div>
-        </form>
+        <app-new-post *ngIf="!editToggle"/>
+        <app-post-edit [postToEdit]="post" (toggleFromChild)="onCancel($event)" [oldComment]="post!.text" *ngIf="editToggle"/>
     </div>
 </div>

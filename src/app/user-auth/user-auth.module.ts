@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,10 +19,11 @@ import { ProfileComponent } from './profile/profile.component';
     
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
+    SharedModule, 
     UserRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   exports: [
     LoginComponent,

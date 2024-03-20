@@ -14,15 +14,21 @@ ul li {
 ul li a {
     padding: 0.5em 1em;
     background: rgb(147,139,0);
+    box-shadow: 0 0 0.3em 0.2em black;
     color: rgb(255,255,255);
     border-radius: 0.3em;
 }
 ul li a:hover{
     background: rgb(185, 176, 0);
+    box-shadow: inset 0 0 0.3em 0.2em black;
     color: rgb(129, 129, 129);
 }
 .logo {
     max-width: 4.5em;
     overflow: hidden;
     border-radius: 0.4em;
+    box-shadow: 0 0 0.3em 0.2em black;
+}
+.logo:hover {
+    box-shadow: inset 0 0 0.3em 0.2em black;
 }
