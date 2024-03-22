@@ -1,0 +1,42 @@
+h3{
+    text-align: center;
+    color: white;
+
+}
+h5 {
+    margin-top: 1em;
+    text-indent: 0.5em;
+}
+.wrapper {
+    flex-direction: column;
+    gap: 1.5em;
+}
+.post {
+    background: rgb(147,139,0);
+    border: 1px solid black;
+    box-shadow: 0 0 0.3em 0.2em black;
+    border-radius: 0.3em;
+}
+.post a {
+    padding: 1em;
+}
+.post:hover{
+    box-shadow: inset 0 0 0.3em 0.2em black;
+}
+.theme-info {
+    border-bottom: 1px solid black;
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: 0.8em;
+}
+.post-info {
+    border-top: 1px solid black;
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: 0.8em;
+    display: inline-block;
+}
+.comment {
+    padding: 2em 0em;
+    text-indent: 2em;
+}

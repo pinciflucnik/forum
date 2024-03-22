@@ -1,9 +1,14 @@
 <app-loader *ngIf="isLoading" />
 <div class="wrapper" *ngIf="!isLoading">
     <div class="post" *ngFor="let post of userPosts">
-        <h3><a [routerLink]="['/themes',post.themeId._id]">{{post.themeId.themeName}}</a></h3>
-        <p>{{post.themeId.updatedAt | elapsedTime}} | {{post.themeId.created_at | elapsedTime}}</p>
-        <p class="comment">{{post.text}}</p>
-        <p>{{post.created_at | elapsedTime}}</p>
+        <a [routerLink]="['/themes',post.themeId._id]">
+            <h3>{{post.themeId.themeName}}</h3>
+            <p class="theme-info">Theme last update {{post.themeId.updatedAt | elapsedTime}} | Theme posted {{post.themeId.created_at | elapsedTime}}</p>
+            <h5>Comment: </h5>
+            <p class="comment">{{post.text}}</p>
+            <div>
+                <p class="post-info">Comment posted {{post.created_at | elapsedTime}}</p>
+            </div>
+        </a>
     </div>
 </div>

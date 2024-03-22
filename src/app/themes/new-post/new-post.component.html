@@ -1,5 +1,5 @@
 <form #form="ngForm" (ngSubmit)="postComment(form)">
-    <label for="postText">Comment:</label>
+    <label for="postText">Add new comment:</label>
     <textarea name="postText" ngModel #postText="ngModel" id="postText" cols="60" rows="10" required [ngClass]=" form.touched? form.invalid ? 'border-red': '' : ''"></textarea>
     <div *ngIf="postText.touched">
         <p *ngIf="postText.errors?.['required']" class="error">Post must not be empty</p>

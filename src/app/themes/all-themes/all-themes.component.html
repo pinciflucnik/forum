@@ -7,9 +7,9 @@
         <div class="card" *ngFor="let theme of allThemes">
             <a [routerLink]="theme._id">
                 <h3>{{theme.themeName | titleDecorator}}</h3>
+                <p>Subscribers: {{theme.subscribers.length}}</p>
                 <p>Created by: {{theme.userId.username}}</p>
                 <p class="date">{{theme.created_at | dateFormatter}}</p>
-                <p>Subscribers: {{theme.subscribers.length}}</p>
             </a>
         </div>
     </div>

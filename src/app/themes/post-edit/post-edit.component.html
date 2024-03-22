@@ -1,22 +1,13 @@
-<!-- <form #form="ngForm" (ngSubmit)="editComment(form, postToEdit!)">
-    <label for="postText">Comment:</label>
-    <textarea name="postText" ngModel #postText="ngModel" id="postText" cols="60" rows="10" required [ngClass]=" form.touched? form.invalid ? 'border-red': '' : ''"></textarea>
-    
-    <div *ngIf="postText.touched">
-        <p *ngIf="postText.errors?.['required']" class="error">Post must not be empty</p>
-    </div>
-    <div class="buttons">
-        <button (click)="onCancel($event)">Cancel</button>
-        <button [disabled]="form.invalid">Edit comment</button>
-    </div>
-</form> -->
 <form [formGroup]="editForm" (ngSubmit)="editComment(postToEdit)">
-    <textarea name="postText" formControlName="postText" id="postText" cols="60" rows="10">{{oldComment}}</textarea>
+    <label for="postText">Edit Comment</label>
+    <textarea name="postText" [formControl]="postText" id="postText" cols="60" rows="10" [ngClass]=" editForm.touched? editForm.invalid ? 'border-red': '' : ''"></textarea>
     <div class="buttons">
-        <button (click)="onCancel($event)">Cancel</button>
-        <button [disabled]="editForm.invalid">Edit comment</button>
-    </div>
-    <div *ngIf="editForm.touched">
-        <p class="error" *ngIf="formText?.errors?.['required']">Post must not be empty</p>
+        <div *ngIf="editForm.touched">
+            <p class="error" *ngIf="formText?.errors?.['required']">Post must not be empty</p>
+        </div>
+        <div class="btns">
+            <button (click)="onCancel($event)">Cancel</button>
+            <button [disabled]="editForm.invalid">Edit comment</button>
+        </div>
     </div>
 </form>

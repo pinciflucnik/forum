@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,10 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NewPostComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-id: string = '';
+  id: string = '';
+  @Output() isPosted = new EventEmitter<boolean>()
   constructor(private api: ApiService, private router: Router){
     this.id = this.route.snapshot.params['themeId'];
 
+  }
+  checkIfPosted(value: boolean) {
+    this.isPosted.emit(value);
   }
   postComment(form: NgForm){
     
@@ -22,13 +26,11 @@ id: string = '';
       return;
 
     }
-    debugger
     return this.api.post(postText, this.id).subscribe({
     
       next: data => {
-        console.log('added post');
-        postText = '';
-        // this.router.navigate([`/themes`])
+        console.log(data);
+        this.checkIfPosted(true)
       },
       error: err => {
         console.log(err);

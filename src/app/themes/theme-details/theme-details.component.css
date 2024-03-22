@@ -1,7 +1,44 @@
 .wrapper{
     flex-direction: column;
+    align-items: center;
+    gap: 1em
 }
 .buttons {
     display: flex;
     gap: 1em;
+}
+.theme-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.theme-header h3 {
+    font-size: 1.3em;
+    border-bottom: 0.1em solid rgb(147,139,0);
+    color: white;
+    padding-bottom: 0.3em;
+    margin-bottom: 1em;
+}
+.theme-header p {
+    font-size: 0.8em;
+}
+.theme-text {
+    padding: 1em 2em;
+    width: 100%;
+    border-radius: 0.5em;
+    border: 2px solid rgb(95, 95, 95);
+    box-shadow: 0 0 1em 0.3em black;
+    display: flex;
+    flex-direction: column;
+}
+.comment-title {
+    padding-bottom: 0.8em;
+    border-bottom: 2px solid rgb(147,139,0);
+    margin-bottom: 0.8em;
+    color: white;
+}
+.theme-btns div{
+    display: flex;
+    gap: 1.5em;
+    margin-top: 1em;
 }

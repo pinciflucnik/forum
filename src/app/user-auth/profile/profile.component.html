@@ -3,8 +3,8 @@
     <div class="info" *ngIf="!editBoolean">
         <h3>Username: {{userUsername}}</h3>
         <p>Email: {{userEmail}}</p>
-        <p><a routerLink="/user-posts">User's posts count: {{profile?.posts?.length}}</a></p>
-        <P><a routerLink="/user-themes">User's themes count: {{themes.length}}</a></P>
+        <p><a routerLink="/user-posts">User's posts count: <span class="items">{{profile?.posts?.length}}</span></a></p>
+        <P><a routerLink="/user-themes">User's themes count: <span class="items">{{themes.length}}</span></a></P>
         <button (click)="editToggle()">Edit profile</button>
     </div>
     <div class="info" *ngIf="editBoolean">

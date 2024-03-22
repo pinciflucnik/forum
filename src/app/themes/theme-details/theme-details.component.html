@@ -1,34 +1,37 @@
 <div class="wrapper">
-    <h3>{{theme?.themeName}}</h3>
-    <p>Subscribers: {{subscriptions.length}}</p>
-
-    <div *ngIf="!!user && !!theme">
-        <div class="theme-btns" *ngIf="theme!.userId != user._id">
-            <div *ngIf="!subscriptions.includes(user!._id)">
-                <button (click)="onSubscribe(theme!._id)">Subscribe</button>
+    <div class="theme-header">
+        <h3>{{theme?.themeName}}</h3>
+        <p>Subscribers: {{subscriptions.length}}</p>
+        
+        <div *ngIf="!!user && !!theme">
+            <div class="theme-btns" *ngIf="theme!.userId != user._id">
+                <div *ngIf="!subscriptions.includes(user!._id)">
+                    <button (click)="onSubscribe(theme!._id)">Subscribe</button>
+                </div>
             </div>
         </div>
     </div>
-
+    <h4>Comments:</h4>
     <div class="theme-text" *ngFor="let post of theme?.posts">
-        <h5>{{post.userId.username}}</h5>
-        <p>{{post.text}}</p>
+        <div class="comment-title">
+            <h4>{{post.text}}</h4>
+        </div>
+        <p class="date">Posted by {{post.userId.username}} - {{post.created_at | elapsedTime}}</p>
         <p>Post likes: {{post.likes.length}}</p>
-        <p class="date">posted {{post.created_at | elapsedTime}}</p>
-        <div class="theme-btns" *ngIf="post.userId._id === user?._id">
+        <div class="theme-btns" *ngIf="!!user && post.userId._id === user?._id">
             <div *ngIf="!editToggle">
                 <button class="edit-btn" (click)="onEdit(post)">Edit</button>
                 <button class="delete-btn" (click)="onDelete(theme?._id, post._id)">Delete</button>
             </div>
         </div>
-        <div class="theme-btns" *ngIf="post.userId._id !== user?._id">
+        <div class="theme-btns" *ngIf="!! user && post.userId._id !== user?._id">
             <div *ngIf="!post.likes.includes(user!._id)">
                 <button (click)="onLike(post._id)">Like this post</button>
             </div>
         </div>
     </div>
     <div class="new-post" *ngIf="user">
-        <app-new-post *ngIf="!editToggle"/>
-        <app-post-edit [postToEdit]="post" (toggleFromChild)="onCancel($event)" [oldComment]="post!.text" *ngIf="editToggle"/>
+        <app-new-post *ngIf="!editToggle" (isPosted)="whenPosted()" />
+        <app-post-edit [postToEdit]="post" (toggleFromChild)="checkEvent($event)" [oldComment]="post!.text" *ngIf="editToggle"/>
     </div>
 </div>

@@ -1,0 +1,20 @@
+input, textarea {
+    background: rgb(147,139,0);
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 0.5em 0.3em black;
+}
+input:focus {
+    background: black;
+}
+textarea:focus {
+    background: black;
+}
+button {
+    margin-top: 1.5em;
+}
+.border-red {
+    box-shadow: 0 0 0.5em 0.3em rgb(134, 12, 12);
+}
+
+

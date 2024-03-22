@@ -1,3 +1,15 @@
+input {
+    background: rgb(147,139,0);
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 0.5em 0.3em black;
+}
+input:focus {
+    background: black;
+}
+button {
+    margin-top: 1.5em;
+}
 .wrapper {
     flex-direction: column;
     justify-content: center;
@@ -7,4 +19,21 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em
+}
+.buttons {
+    display: flex;
+    gap: 1em;
+}
+.items {
+    padding: 0.3em;
+    border-radius: 0.3em;
+    background: rgba(147,139,0,1);
+    box-shadow: 0 0 0.5em 0.3em black;
+    margin-left: 1em;
+}
+.items:active {
+    background: rgb(129,129,129);
+    color: rgb(185, 176, 0);
+    box-shadow: inset 0 0 0.5em 0.3em black;
+
 }

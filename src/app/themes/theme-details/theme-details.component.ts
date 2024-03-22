@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/post-type';
 import { Theme } from 'src/app/theme-type';
@@ -12,7 +11,7 @@ import { ApiService } from '../api.service';
   templateUrl: './theme-details.component.html',
   styleUrls: ['./theme-details.component.css']
 })
-export class ThemeDetailsComponent implements OnInit {
+export class ThemeDetailsComponent implements OnInit{
   route: ActivatedRoute = inject(ActivatedRoute);
   id: string = '';
   theme: Theme | undefined;
@@ -20,16 +19,8 @@ export class ThemeDetailsComponent implements OnInit {
   post: Post | undefined;
   subscriptions: string[] = [];
   themeId: string = '';
- constructor(private api:ApiService, private auth: AuthService, private router: Router){
-  this.id = this.route.snapshot.params['themeId'];
-
-  
- }
- get user(): User | undefined {
-  return this.auth.user
-}  
-
-  ngOnInit(): void {
+  constructor(private api:ApiService, private auth: AuthService, private router: Router){
+    this.id = this.route.snapshot.params['themeId'];
     this.api.getThemeDetails(this.id).subscribe({
       next: theme => {
         this.theme = theme;
@@ -39,6 +30,30 @@ export class ThemeDetailsComponent implements OnInit {
         alert(err.message)
       }
     });  
+
+    
+  }
+  get upDatePosts() {
+    return this.api.getPosts();
+  }
+  get user(): User | undefined {
+    return this.auth.user
+  }  
+  
+  ngOnInit(): void {
+    // this.api.getThemeDetails(this.id).subscribe({
+    //   next: theme => {
+    //     this.theme = theme;
+    //     this.subscriptions = theme.subscribers;
+    //     debugger
+    //   },
+    //   error: err => {
+    //     alert(err.message)
+    //   }
+    // });  
+  }
+  whenPosted(){
+    this.ngOnInit()
   }
   onEdit(post: Post){
     this.post = post;
@@ -55,11 +70,10 @@ export class ThemeDetailsComponent implements OnInit {
     })
   }
   onSubscribe(id: string){
-    console.log('subscribe');
     
     return this.api.subscribe(id).subscribe({
       next: () => {
-        this.router.navigate(['themes'])
+        this.ngOnInit()
       },
       error: err => alert(err.message)
       
@@ -68,15 +82,19 @@ export class ThemeDetailsComponent implements OnInit {
   onLike(id: string){
     return this.api.like(id).subscribe({
       next: () => {
-        this.router.navigate([`/themes`])
+        this.ngOnInit()
       },
       error: err => {
         alert(err.message)
       }
     })
   }
-  onCancel(newValue: boolean){
-    this.editToggle = newValue;
+  checkEvent(newValue: boolean){
+    if(newValue != false){
+      this.editToggle = false;
+      return this.ngOnInit();
+    }
+    return this.editToggle = newValue;
   }
 }
 
