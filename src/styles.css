@@ -57,6 +57,14 @@ button:active {
     background: rgb(129,129,129);
     color: rgb(185, 176, 0);
 }
+button[disabled] {
+    background: rgba(190, 188, 188, 0.4);
+    border: none;
+    color: rgb(68, 7, 7);
+    box-shadow: none;
+    cursor: default;
+
+}
 .wrapper {
     padding: 2em;
     display: flex;
@@ -92,6 +100,13 @@ button:active {
 .border-red {
     border: 4px solid #c73333;
     border-radius: 0.5em;
+}
+.loader-wrapper {
+    min-height: 75vh;
+    background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (min-width: 1300px){

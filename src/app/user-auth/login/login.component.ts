@@ -19,8 +19,14 @@ export class LoginComponent {
       email,
       'password': pass
     }
-    return this.auth.login(body).subscribe(()=> {
-      this.router.navigate(['/themes'])
+    return this.auth.login(body).subscribe({
+      next: ()=> {
+      this.router.navigate(['/themes'])},
+      error: err => {
+        if(err.status == 401){
+          alert('Wrong password or email!')
+        }
+      }
     })
   }
 }

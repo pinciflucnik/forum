@@ -19,17 +19,9 @@ export class ThemeDetailsComponent implements OnInit{
   post: Post | undefined;
   subscriptions: string[] = [];
   themeId: string = '';
+  isLoading: boolean = true;
   constructor(private api:ApiService, private auth: AuthService, private router: Router){
     this.id = this.route.snapshot.params['themeId'];
-    this.api.getThemeDetails(this.id).subscribe({
-      next: theme => {
-        this.theme = theme;
-        this.subscriptions = theme.subscribers;
-      },
-      error: err => {
-        alert(err.message)
-      }
-    });  
 
     
   }
@@ -41,16 +33,16 @@ export class ThemeDetailsComponent implements OnInit{
   }  
   
   ngOnInit(): void {
-    // this.api.getThemeDetails(this.id).subscribe({
-    //   next: theme => {
-    //     this.theme = theme;
-    //     this.subscriptions = theme.subscribers;
-    //     debugger
-    //   },
-    //   error: err => {
-    //     alert(err.message)
-    //   }
-    // });  
+    this.api.getThemeDetails(this.id).subscribe({
+      next: theme => {
+        this.theme = theme;
+        this.subscriptions = theme.subscribers;
+        this.isLoading = false;
+      },
+      error: err => {
+        alert(err.message)
+      }
+    });  
   }
   whenPosted(){
     this.ngOnInit()
@@ -62,7 +54,7 @@ export class ThemeDetailsComponent implements OnInit{
   onDelete(themeId: string | undefined, postId: string){
     return this.api.deletePost(themeId, postId).subscribe({
       next: () => {
-        this.router.navigate([`/themes`])
+        this.ngOnInit();
       },
       error: err => {
         alert(err.message)

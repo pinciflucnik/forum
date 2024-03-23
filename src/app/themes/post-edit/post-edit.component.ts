@@ -31,12 +31,11 @@ export class PostEditComponent implements OnInit {
     this.toggleView(false)
   }
   editComment(post: Post | undefined){
-    const postText = this.editForm.value.postText;
-    return this.api.editPost(post!.themeId._id, post!._id, postText).subscribe({
+
+    return this.api.editPost(post!.themeId._id, post!._id, this.postText.value ? this.postText.value : '').subscribe({
       next: () => {
-        this.formText!.setValue('') ;
+        this.postText.setValue('') ;
         this.toggleView(true)
-        // this.router.navigate(['/themes'])
       },
       error: err => {
         alert(err.message);

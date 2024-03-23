@@ -28,12 +28,12 @@ export class NewPostComponent {
     }
     return this.api.post(postText, this.id).subscribe({
     
-      next: data => {
-        console.log(data);
-        this.checkIfPosted(true)
+      next: () => {
+        form.reset();
+        this.checkIfPosted(true);
+
       },
       error: err => {
-        console.log(err);
         
         alert(err.message);
       }

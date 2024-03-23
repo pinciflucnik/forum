@@ -1,4 +1,5 @@
-<div class="wrapper">
+<app-loader *ngIf="isLoading"/>
+<div *ngIf="!isLoading" class="wrapper">
     <div class="theme-header">
         <h3>{{theme?.themeName}}</h3>
         <p>Subscribers: {{subscriptions.length}}</p>
