@@ -1,6 +1,16 @@
 # Forum
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12. 
+
+## Description
+
+Public part - themes, theme details
+Private part - new theme, new post, edit post, delete post, profile, user's posts, user's themes
+Dynamic pages that fetch data from server - themes, theme details, profile, user's posts, user's themes
+Route guard for logged-in user and route guard for not logged-in users
+Uses Rest-Api from course (provided at https://github.com/pinciflucnik/RestApi-from-Softuni)
+Authentication with JWT via interceptor's "with credentials" property
+Server doesn't support theme delete therefore CRUD operations are available for posts
 
 ## Development server
 
@@ -13,14 +23,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
